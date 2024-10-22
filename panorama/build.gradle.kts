@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.poc.panorama"
+    namespace = "com.poc.panorama.sdk"
     compileSdk = 34
 
     defaultConfig {
@@ -16,11 +16,16 @@ android {
     viewBinding {
         enable = true
     }
+
+    kotlinOptions {
+        jvmTarget = "17"
+    }
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(17))
+    }
 }
 
 dependencies {
@@ -31,4 +36,8 @@ dependencies {
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.sceneview)
+    implementation(libs.androidx.webkit)
+
+    implementation("com.github.hannesa2:panoramagl:1.12")
+
 }

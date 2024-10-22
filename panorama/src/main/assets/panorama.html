@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+</head>
+<body>
+<a-scene>
+    <!-- Carregar a imagem 360 -->
+    <a-sky src="image.png" rotation="0 -130 0"></a-sky>
+
+    <!-- Criar um botão como uma entidade -->
+    <a-plane id="info-button" position="2 1 -3" rotation="0 0 0" width="0.5" height="0.5" color="#FF0000"></a-plane>
+
+    <!-- Texto oculto -->
+    <a-text id="tooltip" value="Aqui está o texto!" position="0 0 -3" color="#FFFFFF" visible="true"></a-text>
+</a-scene>
+
+<script>
+    document.querySelector('#info-button').addEventListener('touchstart', function () {
+        console.log("Click");
+        var tooltip = document.querySelector('#tooltip');
+
+        // Alterna a visibilidade do texto (tooltip)
+        var isVisible = tooltip.getAttribute('visible');
+        tooltip.setAttribute('visible', !isVisible);
+    });
+</script>
+</body>
+</html>

@@ -3,8 +3,14 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
 }
 
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(17))
+    }
+}
+
 android {
-    namespace = "com.poc.panorama"
+    namespace = "com.poc.panorama.demo"
     compileSdk = 34
 
     defaultConfig {
@@ -26,15 +32,13 @@ android {
             )
         }
     }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
-    }
-    kotlinOptions {
-        jvmTarget = "17"
-    }
+
     buildFeatures {
         viewBinding = true
+    }
+
+    kotlinOptions {
+        jvmTarget = "17"
     }
 }
 

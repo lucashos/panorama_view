@@ -13,10 +13,12 @@
         android:theme="@style/Theme.Panorama"
         tools:targetApi="31">
         <activity
-            android:name="com.poc.panorama.PanoramaActivity"
+            android:name="com.poc.panorama.SceneViewActivity"
             android:exported="false"
-            android:theme="@style/Theme.Panorama">
-        </activity>
+            android:theme="@style/Theme.Panorama" />
+        <activity android:name="com.poc.panorama.Image360Activity" />
+        <activity android:name="com.poc.panorama.PanoramaGLActivity" />
+        <activity android:name="com.poc.panorama.PanoGlActivity" />
     </application>
 
 </manifest>
