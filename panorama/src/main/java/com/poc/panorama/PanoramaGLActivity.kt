@@ -4,11 +4,17 @@ import android.hardware.SensorManager
 import android.os.Bundle
 import android.view.MotionEvent
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.drawToBitmap
 import com.panoramagl.PLConstants
+import com.panoramagl.PLISceneElement
+import com.panoramagl.PLITexture
 import com.panoramagl.PLImage
 import com.panoramagl.PLManager
+import com.panoramagl.PLSceneElementBase
 import com.panoramagl.PLSphericalPanorama
+import com.panoramagl.PLTexture
 import com.panoramagl.hotspots.ActionPLHotspot
 import com.panoramagl.hotspots.HotSpotListener
 import com.panoramagl.utils.PLUtils
@@ -46,10 +52,24 @@ class PanoramaGLActivity : AppCompatActivity(), HotSpotListener {
                 PLConstants.kDefaultHotspotSize,
                 PLConstants.kDefaultHotspotSize
             )
+
+            val tooltip = binding.ctnTooltip.drawToBitmap()
+            val plTooltip = ActionPLHotspot(
+                this@PanoramaGLActivity,
+                101,
+                PLImage(tooltip),
+                1f,
+                0f,
+                PLConstants.kDefaultHotspotSize * 1.5f,
+                PLConstants.kDefaultHotspotSize * 1.5f
+            )
+
             panorama.addHotspot(plHotspot2)
+            panorama.addHotspot(plTooltip)
 
             panorama = panoramaView
             startSensorialRotation()
+            
         }
     }
 
@@ -73,7 +93,11 @@ class PanoramaGLActivity : AppCompatActivity(), HotSpotListener {
     }
 
     override fun onHotspotClick(identifier: Long) {
-        runOnUiThread { Toast.makeText(this, "HotSpotClicked! Id is-> $identifier", Toast.LENGTH_SHORT).show() }
+        runOnUiThread { AlertDialog.Builder(this@PanoramaGLActivity)
+            .setTitle("Button clicked")
+            .setMessage("Clicked on icon $identifier")
+            .create().show()
+        }
     }
 
 }

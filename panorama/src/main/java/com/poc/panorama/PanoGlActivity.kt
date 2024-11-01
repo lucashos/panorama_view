@@ -6,6 +6,7 @@ import android.os.Handler
 import android.os.Looper
 import android.view.MotionEvent
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.panoramagl.*
 import com.panoramagl.hotspots.ActionPLHotspot
@@ -118,6 +119,10 @@ class PanoGlActivity : AppCompatActivity(), HotSpotListener {
     }
 
     override fun onHotspotClick(identifier: Long) {
-        runOnUiThread { Toast.makeText(this@PanoGlActivity, "HotSpotClicked! Id is-> $identifier", Toast.LENGTH_SHORT).show() }
+        runOnUiThread { AlertDialog.Builder(this)
+            .setTitle("Button clicked")
+            .setMessage("Clicked on icon $identifier")
+            .create().show()
+        }
     }
 }
